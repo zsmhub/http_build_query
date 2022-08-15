@@ -182,11 +182,12 @@ func padLeft(v int64, length int) string {
 }
 
 func urlEncode(str string) string {
+	str = url.QueryEscape(str)
 	specialChar := map[string]string{
 		"~": "%7E",
 	}
 	for k, v := range specialChar {
-		str = strings.Replace(url.QueryEscape(str), k, v, -1)
+		str = strings.ReplaceAll(str, k, v)
 	}
 	return str
 }
